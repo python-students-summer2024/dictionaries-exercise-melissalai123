@@ -10,9 +10,9 @@ def bake_cookies(filepath):
                 'title': row['title'],
                 'description': row['description'],
                 'price': float(row['price'].replace('$', '').strip()),
-                'sugar_free': row['sugar_free'].lower() == 'true',
-                'gluten_free': row['gluten_free'].lower() == 'true',
-                'contains_nuts': row['contains_nuts'].lower() == 'true'
+                'sugar_free': row.get('sugar_free', 'no').strip().lower() in ['yes', 'y'],
+                'gluten_free': row.get('gluten_free', 'no').strip().lower() in ['yes', 'y'],
+                'contains_nuts': row.get('contains_nuts', 'no').strip().lower() in ['yes', 'y']
             }
             cookies.append(cookie)
     return cookies
